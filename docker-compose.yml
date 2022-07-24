@@ -23,6 +23,9 @@ services:
         SKELETON: ${SKELETON:-symfony/skeleton}
         STABILITY: ${STABILITY:-stable}
     restart: unless-stopped
+    depends_on:
+      - rabbitmq
+      - database
     volumes:
       - php_socket:/var/run/php
       - ./docker/php/cron:/etc/periodic/:ro
