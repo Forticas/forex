@@ -126,7 +126,10 @@ ADD docker/supervisor/messenger-worker.ini /etc/supervisor.d/messenger-worker.in
 
 COPY  docker/php/cron/ /etc/periodic/
 
+
+
 ENTRYPOINT ["docker-entrypoint"]
+CMD ["crod", "-f", "-l", "8"]
 #CMD ["/usr/bin/supervisord"]
 CMD ["php-fpm"]
 
