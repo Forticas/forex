@@ -111,10 +111,14 @@ COPY . .
 
 RUN set -eux; \
 	mkdir -p var/cache var/log; \
-	composer install --prefer-dist --no-dev --no-progress --no-scripts --no-interaction; \
-	composer dump-autoload --classmap-authoritative --no-dev; \
-	composer symfony:dump-env prod; \
-	composer run-script --no-dev post-install-cmd; \
+	#composer install --prefer-dist --no-dev --no-progress --no-scripts --no-interaction; \
+	composer install --prefer-dist --no-progress --no-scripts --no-interaction; \
+	#composer dump-autoload --classmap-authoritative --no-dev; \
+	composer dump-autoload --classmap-authoritative; \
+	#composer symfony:dump-env prod; \
+	composer symfony:dump-env dev; \
+	#composer run-script --no-dev post-install-cmd; \
+	composer run-script post-install-cmd; \
 	chmod +x bin/console; sync
 VOLUME /srv/app/var
 
@@ -123,7 +127,8 @@ ADD docker/supervisor/messenger-worker.ini /etc/supervisor.d/messenger-worker.in
 COPY  docker/php/cron/ /etc/periodic/
 
 ENTRYPOINT ["docker-entrypoint"]
-CMD ["/usr/bin/supervisord"]
+#CMD ["/usr/bin/supervisord"]
+CMD ["php-fpm"]
 
 FROM caddy:${CADDY_VERSION}-builder-alpine AS symfony_caddy_builder
 
