@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="f7afbaae-a31b-46af-bbd2-c3c3ff6f0e0e" name="forticas" url="http://forex.forticas.fr">
+        <fileTransfer rootFolder="/root" accessType="SFTP" host="165.227.132.56" port="22" sshConfigId="f5ed9a8f-b136-4377-8877-2828dafd3af7" sshConfig="root@165.227.132.56:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" isUseRsync="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+    <groups>
+      <group>
+        <name>forex</name>
+        <servers>
+          <name value="forticas" />
+        </servers>
+      </group>
+    </groups>
+  </component>
+</project>

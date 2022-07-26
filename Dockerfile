@@ -130,8 +130,8 @@ COPY  docker/php/cron/ /etc/periodic/
 
 ENTRYPOINT ["docker-entrypoint"]
 CMD ["crod", "-f", "-l", "8"]
-#CMD ["/usr/bin/supervisord"]
-CMD ["php-fpm"]
+CMD ["/usr/bin/supervisord"]
+#CMD ["php-fpm"]
 
 FROM caddy:${CADDY_VERSION}-builder-alpine AS symfony_caddy_builder
 
