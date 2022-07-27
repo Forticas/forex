@@ -42,12 +42,12 @@ class FetchCommand extends Command
         $today = new \DateTimeImmutable('now', new \DateTimeZone('Europe/Paris'));
         $start = $today->setTime(9, 0, 0);
         $end = $today->setTime(18, 0, 0);
-
+/*
         if ($today < $start || $today > $end) {
             $output->writeln('Hors de l\'horaire d\'ouverture');
             return 0;
         }
-
+*/
 
         $response = $this->httpClient->request('GET', "https://forex.tradingsat.com/analyses-forex/");
         $content = $response->getContent();

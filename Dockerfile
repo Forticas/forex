@@ -122,16 +122,13 @@ RUN set -eux; \
 	chmod +x bin/console; sync
 VOLUME /srv/app/var
 
-ADD docker/supervisor/messenger-worker.ini /etc/supervisor.d/messenger-worker.ini
-
 COPY  docker/php/cron/ /etc/periodic/
-
-
+COPY docker/supervisor/messenger-worker.ini /etc/supervisor.d/messenger-worker.ini
 
 ENTRYPOINT ["docker-entrypoint"]
-CMD ["crod", "-f", "-l", "8"]
+
 CMD ["/usr/bin/supervisord"]
-#CMD ["php-fpm"]
+
 
 FROM caddy:${CADDY_VERSION}-builder-alpine AS symfony_caddy_builder
 
@@ -141,6 +138,9 @@ RUN xcaddy build \
 	--with github.com/dunglas/vulcain \
 	--with github.com/dunglas/vulcain/caddy
 
+
+
+
 FROM caddy:${CADDY_VERSION} AS symfony_caddy
 
 WORKDIR /srv/app
@@ -149,3 +149,4 @@ COPY --from=dunglas/mercure:v0.11 /srv/public /srv/mercure-assets/
 COPY --from=symfony_caddy_builder /usr/bin/caddy /usr/bin/caddy
 COPY --from=symfony_php /srv/app/public public/
 COPY docker/caddy/Caddyfile /etc/caddy/Caddyfile
+
