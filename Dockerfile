@@ -123,6 +123,9 @@ RUN set -eux; \
 VOLUME /srv/app/var
 
 COPY  docker/php/cron/ /etc/periodic/
+
+RUN chmod +x /etc/periodic/15min/*
+
 COPY docker/supervisor/messenger-worker.ini /etc/supervisor.d/messenger-worker.ini
 
 ENTRYPOINT ["docker-entrypoint"]

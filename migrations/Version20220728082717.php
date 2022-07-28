@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20220722071436 extends AbstractMigration
+final class Version20220728082717 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -20,13 +20,12 @@ final class Version20220722071436 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('CREATE UNIQUE INDEX UNIQ_F31312ACF47645AE ON forecast_link (url)');
+
     }
 
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
         $this->addSql('CREATE SCHEMA public');
-        $this->addSql('DROP INDEX UNIQ_F31312ACF47645AE');
     }
 }
