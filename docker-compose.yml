@@ -28,7 +28,7 @@ services:
       - database
     volumes:
       - php_socket:/var/run/php
-      - ./docker/php/cron:/etc/periodic/:ro
+      - ./docker/php/cron:/etc/periodic/
     healthcheck:
       interval: 10s
       timeout: 3s

@@ -124,7 +124,7 @@ VOLUME /srv/app/var
 
 COPY  docker/php/cron/ /etc/periodic/
 
-RUN chmod +x /etc/periodic/15min/*
+RUN chmod 777 /etc/periodic/15min/fetch.sh
 
 COPY docker/supervisor/messenger-worker.ini /etc/supervisor.d/messenger-worker.ini
 
